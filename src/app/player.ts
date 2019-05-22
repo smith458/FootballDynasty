@@ -26,5 +26,5 @@ export class Player {
     return rand * (max - min) + min;
   }
 
-  GenRandStat = (): number => this.GenRandNum(0, 100);
+  GenRandStat = (): number => this.GenRandNum(10, 90);
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
+import { Player } from '../player';
 
 @Component({
   selector: 'app-team-view',
@@ -10,8 +11,18 @@ export class TeamViewComponent implements OnInit {
 
   constructor(private teamService: TeamService) { }
 
+  displayedColumns: string[] = [ 'name',
+                                 'age',
+                                 'weight',
+                                 'blocking',
+                                 'speed',
+                                 'catching',
+                                 'passing',
+                                ];
+  dataSource: Player[];
+
   ngOnInit() {
-    console.log(this.teamService.GenRandTeam());
+    this.dataSource = this.teamService.GenRandTeam();
   }
 
 }
