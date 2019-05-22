@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamService } from '../team.service';
 
 @Component({
   selector: 'app-team-view',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private teamService: TeamService) { }
 
   ngOnInit() {
+    console.log(this.teamService.GenRandTeam());
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TeamViewComponent } from './team-view/team-view.component';
 
 @Component({
   selector: 'app-root',
