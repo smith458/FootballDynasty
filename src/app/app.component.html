@@ -4,4 +4,18 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<app-team-view></app-team-view>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="link.path"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    {{link.label}}
+  </a>
+  <mat-tab label="Roster"></mat-tab>
+  <mat-tab label="Finance"></mat-tab>
+  <mat-tab label="Schedule"></mat-tab>
+  <mat-tab label="League"></mat-tab>
+</nav>
+
+<router-outlet></router-outlet>

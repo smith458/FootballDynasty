@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TeamViewComponent } from './team-view/team-view.component';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +7,11 @@ import { TeamViewComponent } from './team-view/team-view.component';
 })
 export class AppComponent {
   title = 'FootballDynasty';
+
+  navLinks = [
+    { path: 'team', label: 'Team' },
+    { path: 'schedule', label: 'Schedule' },
+    { path: 'finance', label: 'Finance' },
+    { path: 'league', label: 'League' },
+  ];
 }

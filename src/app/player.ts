@@ -2,19 +2,15 @@ export class Player {
   Name: string;
   Age: number;
   Weight: number;
-  Blocking: number;
-  Speed: number;
-  Catching: number;
-  Passing: number;
+  Stats: Stats;
+  Salary: number;
 
   constructor(name: string) {
     this.Name = name;
     this.Age = this.GenRandNum(20, 32);
     this.Weight = this.GenRandNum(150, 400);
-    this.Blocking = this.GenRandStat();
-    this.Speed = this.GenRandStat();
-    this.Catching = this.GenRandStat();
-    this.Passing = this.GenRandStat();
+    this.Salary = this.GenRandNum(5, 50);
+    this.Stats = this.GenRandStats();
   }
 
   GenRandNum(min: number, max: number): number {
@@ -27,4 +23,21 @@ export class Player {
   }
 
   GenRandStat = (): number => this.GenRandNum(10, 90);
+  GenRandStats = (): Stats => {
+    return {
+      Awareness: this.GenRandStat(),
+      Blocking: this.GenRandStat(),
+      Speed: this.GenRandStat(),
+      Catching: this.GenRandStat(),
+      Passing: this.GenRandStat(),
+    };
+  }
+}
+
+export interface Stats {
+  Awareness: number;
+  Blocking: number;
+  Speed: number;
+  Catching: number;
+  Passing: number;
 }

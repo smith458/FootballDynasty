@@ -14,6 +14,7 @@ export class TeamViewComponent implements OnInit {
   displayedColumns: string[] = [ 'name',
                                  'age',
                                  'weight',
+                                 'awareness',
                                  'blocking',
                                  'speed',
                                  'catching',
