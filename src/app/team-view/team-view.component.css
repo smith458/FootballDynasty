@@ -1,0 +1,12 @@
+mat-row {
+    height: auto;
+}
+
+.mat-column-name,
+.mat-column-age,
+.mat-column-weight,
+.mat-column-awareness,
+.mat-column-blocking,
+.mat-column-speed {
+    padding: 0px 10px;
+}

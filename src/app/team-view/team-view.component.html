@@ -1,35 +1,35 @@
 <table mat-table [dataSource]='dataSource'>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <th mat-header-cell *matHeaderCellDef title="Name">Name</th>
     <td mat-cell *matCellDef='let element'> {{ element.Name }}</td>
   </ng-container>
   <ng-container matColumnDef="age">
-    <th mat-header-cell *matHeaderCellDef>Age</th>
+    <th mat-header-cell *matHeaderCellDef title="Age" >Age</th>
     <td mat-cell *matCellDef='let element'> {{ element.Age | number:'1.0-0' }}</td>
   </ng-container>
-  <ng-container matColumnDef="weight">
+  <ng-container matColumnDef="weight" title="Weight" >
     <th mat-header-cell *matHeaderCellDef>Weigh</th>
     <td mat-cell *matCellDef='let element'> {{ element.Weight | number:'1.0-0' }}</td>
   </ng-container>
   <ng-container matColumnDef="awareness">
-      <th mat-header-cell *matHeaderCellDef>Awareness</th>
+      <th mat-header-cell *matHeaderCellDef title="Awareness" >AWR</th>
       <td mat-cell *matCellDef='let element'> {{ element.Stats.Awareness | number:'1.0-0' }}</td>
     </ng-container>
   <ng-container matColumnDef="blocking">
-    <th mat-header-cell *matHeaderCellDef>Blocking</th>
+    <th mat-header-cell *matHeaderCellDef title="Blocking" >BLK</th>
     <td mat-cell *matCellDef='let element'> {{ element.Stats.Blocking | number:'1.0-0' }}</td>
   </ng-container>
   <ng-container matColumnDef="speed">
-    <th mat-header-cell *matHeaderCellDef>Speed</th>
+    <th mat-header-cell *matHeaderCellDef title="Speed" >SPD</th>
     <td mat-cell *matCellDef='let element'> {{ element.Stats.Speed | number:'1.0-0' }}</td>
   </ng-container>
   <ng-container matColumnDef="catching">
-    <th mat-header-cell *matHeaderCellDef>Catching</th>
+    <th mat-header-cell *matHeaderCellDef title="Catching">CTH</th>
     <td mat-cell *matCellDef='let element'> {{ element.Stats.Catching | number:'1.0-0' }}</td>
   </ng-container>
   <ng-container matColumnDef="passing">
-    <th mat-header-cell *matHeaderCellDef>Passing</th>
+    <th mat-header-cell *matHeaderCellDef title="Passing">PAS</th>
     <td mat-cell *matCellDef='let element'> {{ element.Stats.Passing | number:'1.0-0' }}</td>
   </ng-container>
 
