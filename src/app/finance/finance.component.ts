@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
 import { Player } from '../player';
+import { Team } from '../team';
 
 @Component({
   selector: 'app-finance',
@@ -17,9 +18,12 @@ export class FinanceComponent implements OnInit {
   ];
 
   dataSource: Player[];
+  teamCities: string[];
+  teams: Team[];
 
   ngOnInit() {
-    this.dataSource = this.teamService.GenRandTeam();
+    this.teams = this.teamService.GetTeams();
+    this.teamCities = this.teamService.GetTeamCities();
   }
 
 }

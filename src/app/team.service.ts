@@ -67,6 +67,10 @@ export class TeamService {
     return MakeTeams();
   }
 
+  GetTeamCities(): string[] {
+    return TEAM_NAMES.map(t => t.City);
+  }
+
   GetSchedule(): Game[] {
     const team = 'Circles';
     return TEAM_NAMES.map(x => x.Name)
