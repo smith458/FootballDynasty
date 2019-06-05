@@ -68,7 +68,7 @@ export class TeamService {
   }
 
   GetTeamCities(): string[] {
-    return TEAM_NAMES.map(t => t.City);
+    return TEAM_NAMES.map(t => t.City).sort();
   }
 
   GetSchedule(): Game[] {

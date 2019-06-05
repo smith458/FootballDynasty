@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TeamViewComponent } from './team-view/team-view.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatTabsModule } from '@angular/material';
+import { MatTableModule, MatTabsModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -24,6 +24,8 @@ import { LeagueComponent } from './league/league.component';
     NoopAnimationsModule,
     MatTableModule,
     MatTabsModule,
+    MatSelectModule,
+    MatFormFieldModule,
     AppRoutingModule,
     RouterModule,
   ],

@@ -1,8 +1,8 @@
 <mat-form-field>
   <mat-label>Team</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let city of teamCities" [value]="team">
-      {{team}}
+  <mat-select [(value)]="selectedCity">
+    <mat-option *ngFor="let city of teamCities" [value]="city">
+      {{city}}
     </mat-option>
   </mat-select>
 </mat-form-field>

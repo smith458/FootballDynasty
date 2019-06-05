@@ -17,13 +17,18 @@ export class FinanceComponent implements OnInit {
     'salary',
   ];
 
-  dataSource: Player[];
+  get dataSource(): Player[] {
+    return this.teams.find(t => t.City == this.selectedCity).Players;
+  };
+
   teamCities: string[];
+  selectedCity: string;
   teams: Team[];
 
   ngOnInit() {
     this.teams = this.teamService.GetTeams();
     this.teamCities = this.teamService.GetTeamCities();
+    this.selectedCity = this.teamCities[0];
   }
 
 }
