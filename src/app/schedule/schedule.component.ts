@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../game';
 import { TeamService } from '../team.service';
+import { Team } from '../team';
 
 @Component({
   selector: 'app-schedule',
@@ -17,9 +18,16 @@ export class ScheduleComponent implements OnInit {
     'date',
   ];
 
-  dataSource: Game[];
+  get dataSource(): Game[] {
+    return this.teams.find(t => t.City === this.selectedCity).Schedule;
+  }
 
+  teamCities: string[];
+  selectedCity: string;
+  teams: Team[];
   ngOnInit() {
-    this.dataSource = this.teamService.GetSchedule();
+    this.teamCities = this.teamService.GetTeamCities();
+    this.teams = this.teamService.GetTeams();
+    this.selectedCity = this.teamCities[0];
   }
 }

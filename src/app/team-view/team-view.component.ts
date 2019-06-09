@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
 import { Player } from '../player';
+import { Team } from '../team';
 
 @Component({
   selector: 'app-team-view',
@@ -20,10 +21,19 @@ export class TeamViewComponent implements OnInit {
                                  'catching',
                                  'passing',
                                 ];
-  dataSource: Player[];
+
+   get dataSource(): Player[] {
+    return this.teams.find(t => t.City === this.selectedCity).Players;
+  }
+
+  teamCities: string[];
+  selectedCity: string;
+  teams: Team[];
 
   ngOnInit() {
-    this.dataSource = this.teamService.GenRandTeam();
+    this.teamCities = this.teamService.GetTeamCities();
+    this.teams = this.teamService.GetTeams();
+    this.selectedCity = this.teamCities[0];
   }
 
 }

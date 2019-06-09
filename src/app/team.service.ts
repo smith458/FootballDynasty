@@ -49,7 +49,13 @@ function MakePlayers(): Player[] {
 }
 
 function MakeTeams(): Team[] {
-  return TEAM_NAMES.map(t => new Team(t.Name, t.City, MakePlayers()));
+  return TEAM_NAMES.map(t => new Team(t.Name, t.City, MakePlayers(), MakeSchedule(t.Name)));
+}
+
+function MakeSchedule(teamName: string): Game[] {
+  return TEAM_NAMES.map(x => x.Name)
+                   .filter(x => x !== teamName)
+                   .map((x, i) => MakeGame(teamName, x, moment().add(7 * i, 'days')));
 }
 
 @Injectable({
@@ -69,12 +75,5 @@ export class TeamService {
 
   GetTeamCities(): string[] {
     return TEAM_NAMES.map(t => t.City).sort();
-  }
-
-  GetSchedule(): Game[] {
-    const team = 'Circles';
-    return TEAM_NAMES.map(x => x.Name)
-                     .filter(x => x !== team)
-                     .map((x, i) => MakeGame(team, x, moment()));
   }
 }

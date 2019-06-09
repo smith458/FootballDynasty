@@ -18,8 +18,8 @@ export class FinanceComponent implements OnInit {
   ];
 
   get dataSource(): Player[] {
-    return this.teams.find(t => t.City == this.selectedCity).Players;
-  };
+    return this.teams.find(t => t.City === this.selectedCity).Players;
+  }
 
   teamCities: string[];
   selectedCity: string;
