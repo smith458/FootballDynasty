@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Player } from './player';
 import { Team } from './team';
 import { Game } from './game';
-import * as moment from 'moment';
+import { League } from './league';
 
 const PLAYER_NAMES: string[] = [
   'John Smith',
@@ -32,11 +32,11 @@ const TEAM_NAMES: {Name: string, City: string}[] = [
   { Name: 'Boarders', City: 'Long Beach' },
 ];
 
-function MakeGame(home: string, away: string, date: moment.Moment) {
+function MakeGame(home: string, away: string, week: number) {
   const game = new Game();
   game.HomeTeam = home;
   game.AwayTeam = away;
-  game.EventDate = date;
+  game.Week = week;
   return game;
 }
 
@@ -49,13 +49,23 @@ function MakePlayers(): Player[] {
 }
 
 function MakeTeams(): Team[] {
-  return TEAM_NAMES.map(t => new Team(t.Name, t.City, MakePlayers(), MakeSchedule(t.Name)));
+  return TEAM_NAMES.map(t => new Team(t.Name, t.City, MakePlayers(), MakeSchedule(`${t.City} ${t.Name}`)));
 }
 
 function MakeSchedule(teamName: string): Game[] {
-  return TEAM_NAMES.map(x => x.Name)
-                   .filter(x => x !== teamName)
-                   .map((x, i) => MakeGame(teamName, x, moment().add(7 * i, 'days')));
+  return TEAM_NAMES.map(t => `${t.City} ${t.Name}`)
+                   .filter(t => t !== teamName)
+                   .map((t, i) => MakeGame(teamName, t, i + 1));
+}
+
+function MakeLeague(): League {
+  const league = new League();
+  league.Name = 'New League';
+  league.Team = 'Indianapolis Circles';
+  league.Teams = MakeTeams();
+  league.Week = 1;
+  league. Year = 0;
+  return league;
 }
 
 @Injectable({
@@ -65,15 +75,11 @@ export class TeamService {
 
   constructor() { }
 
-  GenRandTeam(): Player[] {
-    return PLAYER_NAMES.map(x => new Player(x));
+  GetLeague(): League {
+    return MakeLeague();
   }
 
-  GetTeams(): Team[] {
-    return MakeTeams();
-  }
-
-  GetTeamCities(): string[] {
-    return TEAM_NAMES.map(t => t.City).sort();
+  GetTeamFullNames(): string[] {
+    return TEAM_NAMES.map(t => `${t.City} ${t.Name}`).sort();
   }
 }

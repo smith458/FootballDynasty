@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
 import { Player } from '../player';
 import { Team } from '../team';
+import { League } from '../league';
 
 @Component({
   selector: 'app-team-view',
@@ -23,17 +24,19 @@ export class TeamViewComponent implements OnInit {
                                 ];
 
    get dataSource(): Player[] {
-    return this.teams.find(t => t.City === this.selectedCity).Players;
+    return this.teams.find(t => t.FullName === this.selectedTeam).Players;
   }
 
-  teamCities: string[];
-  selectedCity: string;
+  teamFullNames: string[];
+  selectedTeam: string;
+  league: League;
   teams: Team[];
 
   ngOnInit() {
-    this.teamCities = this.teamService.GetTeamCities();
-    this.teams = this.teamService.GetTeams();
-    this.selectedCity = this.teamCities[0];
+    this.teamFullNames = this.teamService.GetTeamFullNames();
+    this.league = this.teamService.GetLeague();
+    this.teams = this.league.Teams;
+    this.selectedTeam = this.league.Team;
   }
 
 }

@@ -20,7 +20,7 @@ export class LeagueComponent implements OnInit {
   dataSource: Team[];
 
   ngOnInit() {
-    this.dataSource = this.teamService.GetTeams();
+    this.dataSource = this.teamService.GetLeague().Teams;
   }
 
 }
