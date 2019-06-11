@@ -1,7 +1,7 @@
-import { Moment } from 'moment';
-
 export class Game {
-  HomeTeam: string;
-  AwayTeam: string;
-  Week: number;
+  constructor(
+    public HomeTeam: string,
+    public AwayTeam: string,
+    public Week: number,
+  ) {}
 }

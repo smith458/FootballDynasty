@@ -3,11 +3,11 @@ import { Game } from './game';
 
 export class Team {
 
-  constructor(name: string, city: string, players: Player[], schedule: Game[]) {
+  constructor(name: string, city: string, players: Player[]) {
     this.Name = name;
     this.City = city;
     this.Players = players;
-    this.Schedule = schedule;
+    this.FullName = `${this.City} ${this.Name}`;
   }
 
   Name: string;
@@ -15,11 +15,7 @@ export class Team {
   Players: Player[];
   Wins: number;
   Losses: number;
-  Schedule: Game[];
-
-  get FullName(): string {
-    return `${this.City} ${this.Name}`;
-  }
+  FullName: string;
 
   get TotalSalary(): number {
     return this.Players.map(p => p.Salary)

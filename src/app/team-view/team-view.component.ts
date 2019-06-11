@@ -23,7 +23,7 @@ export class TeamViewComponent implements OnInit {
                                  'passing',
                                 ];
 
-   get dataSource(): Player[] {
+  get dataSource(): Player[] {
     return this.teams.find(t => t.FullName === this.selectedTeam).Players;
   }
 
@@ -38,5 +38,4 @@ export class TeamViewComponent implements OnInit {
     this.teams = this.league.Teams;
     this.selectedTeam = this.league.Team;
   }
-
 }

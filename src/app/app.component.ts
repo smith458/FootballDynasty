@@ -9,6 +9,8 @@ export class AppComponent {
   title = 'FootballDynasty';
 
   navLinks = [
+    { path: 'league-creation', label: 'League Creation' },
+    { path: 'home', label: 'Home' },
     { path: 'team', label: 'Team' },
     { path: 'schedule', label: 'Schedule' },
     { path: 'finance', label: 'Finance' },

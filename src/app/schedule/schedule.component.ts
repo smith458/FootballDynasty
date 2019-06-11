@@ -3,6 +3,11 @@ import { Game } from '../game';
 import { TeamService } from '../team.service';
 import { Team } from '../team';
 import { League } from '../league';
+import * as _ from 'underscore';
+
+function IsTeamInGame(teamName: string, game: Game){
+  return teamName === game.AwayTeam || teamName === game.HomeTeam;
+}
 
 @Component({
   selector: 'app-schedule',
@@ -20,7 +25,8 @@ export class ScheduleComponent implements OnInit {
   ];
 
   get dataSource(): Game[] {
-    return this.teams.find(t => t.FullName === this.selectedTeam).Schedule;
+    return _.flatten(this.league.Schedule)
+            .filter(g => IsTeamInGame(this.selectedTeam, g));
   }
 
   teamFullNames: string[];

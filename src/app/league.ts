@@ -1,4 +1,5 @@
 import { Team } from './team';
+import { Game } from './game';
 
 export class League {
     Name: string;
@@ -6,4 +7,5 @@ export class League {
     Week: number;
     Team: string;
     Teams: Team[];
+    Schedule: Game[][];
 }
