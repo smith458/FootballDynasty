@@ -14,29 +14,13 @@ export const TEAM_NAMES: {Name: string, City: string}[] = [
 ];
 
 export const FIRST_NAMES: string[] = [
-  'John',
-  'Jerry',
-  'Donald',
-  'Terry',
-  'Danny',
-  'Sam',
-  'Dunsten',
-  'Tyler',
-  'Aaron',
-  'Cory',
-  'Vince',
+  'John', 'Jerry', 'Donald', 'Terry', 'Danny',
+  'Sam', 'Dunsten', 'Tyler', 'Aaron', 'Cory',
+  'Vince', 'Allen', 'Andrew', 'Russel', 'Darius',
 ];
 
 export const LAST_NAMES: string[] = [
-  'Smith',
-  'Matthews',
-  'Shirley',
-  'Hughes',
-  'Danger',
-  'Swaddle',
-  'Trance',
-  'Finch',
-  'Ripma',
-  'Damm',
-  'Hurst',
+  'Smith', 'Matthews', 'Shirley', 'Hughes', 'Danger',
+  'Swaddle', 'Trance', 'Finch', 'Ripma', 'Damm',
+  'Hurst', 'Luck', 'Westbrook', 'Dinero', 'Bookman',
 ];

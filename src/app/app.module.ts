@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { TeamViewComponent } from './team-view/team-view.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatTabsModule, MatSelectModule,
-         MatFormFieldModule, MatSidenavModule, MatButtonModule } from '@angular/material';
+         MatFormFieldModule, MatSidenavModule, MatButtonModule,
+         MatInputModule } from '@angular/material';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -33,6 +34,7 @@ import { LeagueCreationComponent } from './league-creation/league-creation.compo
     MatFormFieldModule,
     MatSidenavModule,
     MatButtonModule,
+    MatInputModule,
     AppRoutingModule,
     RouterModule,
   ],

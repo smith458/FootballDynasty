@@ -1,6 +1,17 @@
-<button mat-raised-button color="primary" (click)="GenerateLeague()">
-  Generate League
-</button>
-<button mat-raised-button color="warn" (click)="DeleteLeague()">
-  Delete League
-</button>
+<div>
+  <input matInput placeholder="League Name" #leagueName (keyup)='AssignName(leagueName.value)'  />
+  <mat-form-field>
+      <mat-label>Team</mat-label>
+      <mat-select [(value)]="selectedTeam">
+        <mat-option *ngFor="let team of teamFullNames" [value]="team">
+          {{team}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  <button mat-raised-button color="primary" (click)="GenerateLeague()">Generate League</button>  
+  </div>
+<div *ngFor="let leagueName of leagueNames">
+  <button mat-raised-button color="primary" (click)="LoadLeague(leagueName)">{{ leagueName }}</button>
+  <button mat-raised-button color="warn" (click)="DeleteLeague(leagueName)">Delete League</button>
+</div>
+<div class="errorText">{{ errorText }}</div>

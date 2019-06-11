@@ -3,6 +3,7 @@ import { Game } from '../game';
 import { Team } from '../team';
 import { League } from '../league';
 import { Player } from '../player';
+import { TeamService } from '../team.service';
 import { TEAM_NAMES, FIRST_NAMES, LAST_NAMES } from '../name-constants';
 import * as _ from 'underscore';
 
@@ -17,8 +18,8 @@ function MakeTeams(): Team[] {
 function MakePlayers(): Player[] {
   const players = new Array();
     for (let i = 0; i < 11; i++) {
-      const firstName = FIRST_NAMES[GetRandomNum(0, FIRST_NAMES.length)];
-      const lastName = LAST_NAMES[GetRandomNum(0, LAST_NAMES.length)];
+      const firstName = FIRST_NAMES[GetRandomNum(0, FIRST_NAMES.length - 1)];
+      const lastName = LAST_NAMES[GetRandomNum(0, LAST_NAMES.length - 1)];
       players[i] = new Player(`${firstName} ${lastName}`);
     }
   return players;
@@ -45,10 +46,10 @@ function MakeSchedule(teams: Team[]): Game[][] {
   return schedule;
 }
 
-function MakeLeague(): League {
+function MakeLeague(leagueName: string, teamName: string): League {
   const league = new League();
-  league.Name = 'New League';
-  league.Team = 'Indianapolis Circles';
+  league.Name = leagueName;
+  league.Team = teamName;
   league.Teams = MakeTeams();
   league.Week = 1;
   league.Year = 0;
@@ -63,17 +64,41 @@ function MakeLeague(): League {
 })
 export class LeagueCreationComponent implements OnInit {
 
-  constructor() { }
+  get leagueNames(): string[]{
+    return this.teamService.GetLeagueNames();
+  }
+
+  typedLeagueName: string;
+  selectedTeam: string;
+  teamFullNames: string[];
+
+  errorText: string;
+  constructor(private teamService: TeamService) { }
 
   ngOnInit() {
+    this.teamFullNames = this.teamService.GetTeamFullNames();
+    this.selectedTeam = this.teamFullNames[0];
+  }
+
+  AssignName(name: string) {
+    this.errorText = '';
+    this.typedLeagueName = name;
   }
 
   GenerateLeague() {
-    const league: League = MakeLeague();
-    localStorage.setItem('league', JSON.stringify(league));
+    if (this.leagueNames.includes(this.typedLeagueName)){
+      this.errorText = 'The league name already exists';
+      return;
+    }
+    const league: League = MakeLeague(this.typedLeagueName, this.selectedTeam);
+    this.teamService.SaveLeague(this.typedLeagueName, league);
   }
 
-  DeleteLeague() {
-    localStorage.removeItem('league');
+  LoadLeague(leagueName: string) {
+    this.teamService.SetActiveLeague(leagueName);
+  }
+
+  DeleteLeague(leagueName: string) {
+    this.teamService.DeleteLeague(leagueName);
   }
 }
