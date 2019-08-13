@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../game';
+import { Game } from '../storageClasses/game';
 import { TeamService } from '../team.service';
-import { Team } from '../team';
-import { League } from '../league';
+import { Team } from '../storageClasses/team';
+import { League } from '../storageClasses/league';
 import * as _ from 'underscore';
 
 function IsTeamInGame(teamName: string, game: Game){
@@ -37,6 +37,6 @@ export class ScheduleComponent implements OnInit {
     this.teamFullNames = this.teamService.GetTeamFullNames();
     this.league = this.teamService.GetLeague();
     this.teams = this.league.Teams;
-    this.selectedTeam = this.league.Team;
+    this.selectedTeam = this.league.TeamName;
   }
 }

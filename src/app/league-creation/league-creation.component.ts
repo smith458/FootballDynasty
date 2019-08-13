@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../game';
-import { Team } from '../team';
-import { League } from '../league';
-import { Player } from '../player';
+import { Game } from '../storageClasses/game';
+import { Team } from '../storageClasses/team';
+import { League } from '../storageClasses/league';
+import { Player } from '../storageClasses/player';
 import { TeamService } from '../team.service';
 import { TEAM_NAMES, FIRST_NAMES, LAST_NAMES } from '../name-constants';
+import { SEASON_LENGTH, STARTING_PLAYER_COUNT } from '../league-constants';
 import * as _ from 'underscore';
 
 function GetRandomNum(min: number, max: number): number {
@@ -17,10 +18,11 @@ function MakeTeams(): Team[] {
 
 function MakePlayers(): Player[] {
   const players = new Array();
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < STARTING_PLAYER_COUNT; i++) {
       const firstName = FIRST_NAMES[GetRandomNum(0, FIRST_NAMES.length - 1)];
       const lastName = LAST_NAMES[GetRandomNum(0, LAST_NAMES.length - 1)];
-      players[i] = new Player(`${firstName} ${lastName}`);
+      const name = `${firstName} ${lastName}`;
+      players[i] = Player.MakeRandomPlayer(name);
     }
   return players;
 }
@@ -38,8 +40,8 @@ function MakeWeekSchedule(teams: Team[], week: number): Game[] {
 
 function MakeSchedule(teams: Team[]): Game[][] {
   const schedule: Game[][] = new Array<Array<Game>>();
-  for (let i = 0; i < 11; i++){
-    const week = i + 1;
+  for (let i = 0; i < SEASON_LENGTH; i++) {
+    const week = i;
     const weekSchedule = MakeWeekSchedule(teams, week);
     schedule.push(weekSchedule);
   }
@@ -47,14 +49,15 @@ function MakeSchedule(teams: Team[]): Game[][] {
 }
 
 function MakeLeague(leagueName: string, teamName: string): League {
-  const league = new League();
-  league.Name = leagueName;
-  league.Team = teamName;
-  league.Teams = MakeTeams();
-  league.Week = 1;
-  league.Year = 0;
-  league.Schedule = MakeSchedule(league.Teams);
-  return league;
+  const teams = MakeTeams();
+  return new League(
+    leagueName,
+    0,
+    0,
+    teamName,
+    teams,
+    MakeSchedule(teams),
+  );
 }
 
 @Component({
@@ -64,8 +67,12 @@ function MakeLeague(leagueName: string, teamName: string): League {
 })
 export class LeagueCreationComponent implements OnInit {
 
-  get leagueNames(): string[]{
+  get leagueNames(): string[] {
     return this.teamService.GetLeagueNames();
+  }
+
+  get activeLeagueName(): string {
+    return this.teamService.GetActiveLeagueName();
   }
 
   typedLeagueName: string;

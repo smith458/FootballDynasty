@@ -1,4 +1,5 @@
 <div>
+  <div>Active League: {{ activeLeagueName }}</div>
   <input matInput placeholder="League Name" #leagueName (keyup)='AssignName(leagueName.value)'  />
   <mat-form-field>
       <mat-label>Team</mat-label>
@@ -10,8 +11,9 @@
     </mat-form-field>
   <button mat-raised-button color="primary" (click)="GenerateLeague()">Generate League</button>  
   </div>
-<div *ngFor="let leagueName of leagueNames">
-  <button mat-raised-button color="primary" (click)="LoadLeague(leagueName)">{{ leagueName }}</button>
-  <button mat-raised-button color="warn" (click)="DeleteLeague(leagueName)">Delete League</button>
+<div class="flex-container" *ngFor="let leagueName of leagueNames">
+  <div>{{ leagueName }}</div>
+  <div><button mat-raised-button color="primary" (click)="LoadLeague(leagueName)">Load League</button></div>
+  <div><button mat-raised-button color="warn" (click)="DeleteLeague(leagueName)">Delete League</button></div>
 </div>
 <div class="errorText">{{ errorText }}</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
-import { Team } from '../team';
+import { Team } from '../storageClasses/team';
 
 @Component({
   selector: 'app-league',
@@ -22,5 +22,4 @@ export class LeagueComponent implements OnInit {
   ngOnInit() {
     this.dataSource = this.teamService.GetLeague().Teams;
   }
-
 }

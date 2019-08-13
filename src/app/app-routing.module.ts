@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'schedule', component: ScheduleComponent},
   { path: 'finance', component: FinanceComponent},
   { path: 'league', component: LeagueComponent},
-  { path: '', redirectTo: '/team', pathMatch: 'full' },
+  { path: '', redirectTo: '/league-creation', pathMatch: 'full' },
 ];
 
 @NgModule({

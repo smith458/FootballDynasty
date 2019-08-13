@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
-import { Player } from '../player';
-import { Team } from '../team';
-import { League } from '../league';
+import { Player } from '../storageClasses/player';
+import { Team } from '../storageClasses/team';
+import { League } from '../storageClasses/league';
 
 @Component({
   selector: 'app-team-view',
@@ -36,6 +36,6 @@ export class TeamViewComponent implements OnInit {
     this.teamFullNames = this.teamService.GetTeamFullNames();
     this.league = this.teamService.GetLeague();
     this.teams = this.league.Teams;
-    this.selectedTeam = this.league.Team;
+    this.selectedTeam = this.league.TeamName;
   }
 }
